@@ -1,5 +1,5 @@
 var express = require('express')
-var proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 var cookiejar = require('cookiejar')
 var cors = require('cors');
 
@@ -71,7 +71,7 @@ app.use(cors({
 
 }));
 
-app.use('/api', proxy({
+app.use('/api', createProxyMiddleware({
   target: opts.u,
   changeOrigin: true,
   secure: false,
@@ -84,6 +84,8 @@ app.use('/api', proxy({
 }))
 
 function onProxyRes(proxyRes, req, res) {
+  proxyRes.headers['access-control-allow-origin'] = "*"
+  proxyRes.statusCode = 200
 }
 
 app.listen(opts.l)
