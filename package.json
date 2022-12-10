@@ -13,7 +13,7 @@
   "dependencies": {
     "cookiejar": "^2.1.2",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "parcel-bundler": "^1.10.3"
   },
   "devDependencies": {
